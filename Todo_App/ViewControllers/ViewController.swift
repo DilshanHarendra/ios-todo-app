@@ -11,8 +11,9 @@ class ViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    var dbService:DatabaseService!
-    var tasks:[String]=["task one","task 2","task 3"]
+    private var dbService:DatabaseService!
+    private var taskModel:TaskModel!
+    private var tasks:[Task]=[]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,9 @@ class ViewController: UIViewController {
         // connect to database
         
         self.dbService = DatabaseService()
-        
+        self.taskModel = TaskModel()
+        print("call")
+        self.fetchTasks()
     }
     
     @IBAction func showAddTask(){
@@ -33,6 +36,10 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(vc, animated:true)
     }
     
+    func fetchTasks() {
+        print("fetch tasks")
+        self.tasks = self.taskModel.getTasks()
+    }
 
 
 }
@@ -51,7 +58,7 @@ extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell",for: indexPath)
         
-        cell.textLabel?.text = tasks[indexPath.row]
+        cell.textLabel?.text = tasks[indexPath.row].getTask()
         
         return cell
     }
