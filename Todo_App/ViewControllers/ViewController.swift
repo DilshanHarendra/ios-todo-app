@@ -11,6 +11,7 @@ class ViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
+    var dbService:DatabaseService!
     var tasks:[String]=["task one","task 2","task 3"]
     
     override func viewDidLoad() {
@@ -19,11 +20,16 @@ class ViewController: UIViewController {
         self.title="Tasks"
         tableView.delegate=self
         tableView.dataSource=self
+        
+        // connect to database
+        
+        self.dbService = DatabaseService()
+        
     }
     
     @IBAction func showAddTask(){
         let vc = storyboard?.instantiateViewController(identifier: "addTask") as! AddTaskViewController
-        vc.title = "Add New Task"
+        vc.title = "New Task"
         navigationController?.pushViewController(vc, animated:true)
     }
     
