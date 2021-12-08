@@ -41,22 +41,21 @@ class DatabaseService
     
     func createTables(){
         // create task table
-        let taskQuery = "CREATE TABLE IF NOT EXISTS tasks(id INTEGER AUTO_INCREMENT PRIMARY KEY, taks TEXT, description TEXT, startAt TEXT, endsAt TEXT);"
+        let taskQuery = "CREATE TABLE IF NOT EXISTS tasks(id INTEGER AUTO_INCREMENT PRIMARY KEY, task TEXT, description TEXT, startsAt TEXT, endsAt TEXT);"
         
         var createTaskTable:OpaquePointer?=nil
         
         if sqlite3_prepare_v2( DatabaseService.db, taskQuery, -1, &createTaskTable, nil) == SQLITE_OK {
             if sqlite3_step(createTaskTable)==SQLITE_DONE {
-                    print("Task Table created")
+                    print("Tasks Table created")
             }else{
-                print("Task table cannot created")
+                print("Tasks table cannot created")
             }
         }else{
-            print("task CREATE TABLE statement could not be prepared.")
+            print("tasks CREATE TABLE statement could not be prepared.")
         }
         
-        sqlite3_finalize(createTaskTable
-        )
+        sqlite3_finalize(createTaskTable)
         
     }
     
