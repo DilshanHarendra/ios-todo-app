@@ -11,22 +11,24 @@ class AddTaskViewController: UIViewController {
     
     @IBOutlet var task:UITextField!
     @IBOutlet var taskDescription: UITextView!
-    @IBOutlet var from:UITextField!
-    @IBOutlet var to:UITextField!
+    @IBOutlet var startsAt:UITextField!
+    @IBOutlet var endsAt:UITextField!
     
+    private var taskModel:TaskModel!
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        taskModel = TaskModel()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func saveTask(){
-        print(task!.text ?? "")
-        print(from!.text ?? "")
-        print(to!.text ?? "")
+        let newTask:Task = Task(task: task.text!, description: taskDescription.text!, startAt: startsAt.text!, endsAt: endsAt.text!)
+        
+        let message:String = self.taskModel.createTask(task: newTask)
+        print(message)
     }
     /*
     // MARK: - Navigation
