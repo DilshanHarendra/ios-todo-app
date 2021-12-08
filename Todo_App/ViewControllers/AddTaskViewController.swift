@@ -8,6 +8,14 @@
 import UIKit
 
 class AddTaskViewController: UIViewController {
+    
+    @IBOutlet var task:UITextField!
+    @IBOutlet var taskDescription: UITextView!
+    @IBOutlet var from:UITextField!
+    @IBOutlet var to:UITextField!
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +23,11 @@ class AddTaskViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func saveTask(){
+        print(task!.text ?? "")
+        print(from!.text ?? "")
+        print(to!.text ?? "")
+    }
     /*
     // MARK: - Navigation
 
