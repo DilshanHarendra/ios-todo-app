@@ -10,7 +10,14 @@ import Foundation
 class Task{
    private var task:String, description:String, startAt:String, endsAt:String, id:Int!=nil
     
-    init(id:Int?, task:String, description:String, startAt:String, endsAt:String) {
+    init(task:String, description:String, startAt:String, endsAt:String) {
+        
+        self.task=task
+        self.description=description
+        self.startAt=startAt
+        self.endsAt=endsAt
+    }
+    init(id:Int, task:String, description:String, startAt:String, endsAt:String) {
         self.id=id
         self.task=task
         self.description=description
