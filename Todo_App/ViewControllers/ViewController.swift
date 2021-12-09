@@ -33,12 +33,19 @@ class ViewController: UIViewController {
     @IBAction func showAddTask(){
         let vc = storyboard?.instantiateViewController(identifier: "addTask") as! AddTaskViewController
         vc.title = "New Task"
+        vc.update={
+            DispatchQueue.main.async {
+                self.fetchTasks()
+            }
+        }
         navigationController?.pushViewController(vc, animated:true)
     }
     
     func fetchTasks() {
         print("fetch tasks")
+        self.tasks.removeAll()
         self.tasks = self.taskModel.getTasks()
+        tableView.reloadData()
     }
 
 
