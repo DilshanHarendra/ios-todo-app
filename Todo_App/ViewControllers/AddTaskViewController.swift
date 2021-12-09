@@ -16,6 +16,7 @@ class AddTaskViewController: UIViewController {
     
     private var taskModel:TaskModel!
     
+    var update:(()->Void)?
     
 
     override func viewDidLoad() {
@@ -27,8 +28,12 @@ class AddTaskViewController: UIViewController {
     @IBAction func saveTask(){
         let newTask:Task = Task(task: task.text!, description: taskDescription.text!, startAt: startsAt.text!, endsAt: endsAt.text!)
         
-        let message:String = self.taskModel.createTask(task: newTask)
-        print(message)
+        let task:Task = self.taskModel.createTask(task: newTask)
+        print("\(task.getTask()) Creataed")
+        
+        update?()
+        
+        navigationController?.popViewController(animated: true)
     }
     /*
     // MARK: - Navigation
