@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
@@ -26,7 +26,6 @@ class ViewController: UIViewController {
         
         self.dbService = DatabaseService()
         self.taskModel = TaskModel()
-        print("call")
         self.fetchTasks()
     }
     
@@ -42,7 +41,6 @@ class ViewController: UIViewController {
     }
     
     func fetchTasks() {
-        print("fetch tasks")
         self.tasks.removeAll()
         self.tasks = self.taskModel.getTasks()
         tableView.reloadData()
@@ -50,14 +48,21 @@ class ViewController: UIViewController {
 
 
 }
-extension ViewController: UITableViewDelegate{
+extension MainController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let vc = storyboard?.instantiateViewController(identifier: "viewTask") as! ViewTaskController
+        vc.title = "View Task"
+        vc.task=tasks[indexPath.row]
+        navigationController?.pushViewController(vc, animated:true)
     }
+    
+  
+    
 }
 
-extension ViewController: UITableViewDataSource{
+extension MainController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tasks.count
     }
