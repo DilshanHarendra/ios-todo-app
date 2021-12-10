@@ -9,7 +9,7 @@ import UIKit
 
 class AddTaskViewController: UIViewController {
     
-    @IBOutlet var task:UITextField!
+    @IBOutlet var taskTitle:UITextField!
     @IBOutlet var taskDescription: UITextView!
     @IBOutlet var startsAt:UITextField!
     @IBOutlet var endsAt:UITextField!
@@ -26,7 +26,7 @@ class AddTaskViewController: UIViewController {
     }
     
     @IBAction func saveTask(){
-        let newTask:Task = Task(task: task.text!, description: taskDescription.text!, startAt: startsAt.text!, endsAt: endsAt.text!)
+        let newTask:Task = Task(task: taskTitle.text!, description: taskDescription.text!, startAt: startsAt.text!, endsAt: endsAt.text!)
         
         let task:Task = self.taskModel.createTask(task: newTask)
         print("\(task.getTask()) Creataed")
