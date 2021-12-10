@@ -52,9 +52,9 @@ class TaskModel {
                 let endsAt = String(describing: String(cString: sqlite3_column_text(selectStatement,4)))
                     
                 tasks.append(Task(id: Int(id), task: task, description: description, startAt: startsAt, endsAt: endsAt))
-                print("TASK SELECT DONE")
+              
             }
-            
+            print("TASK SELECT DONE")
             
         }else{
             print("Task SELECT statement could not be prepared")
